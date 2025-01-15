@@ -5,12 +5,21 @@ import {
   IonTitle,
   IonContent,
   InfiniteScrollCustomEvent,
-  IonList, IonAvatar, IonSkeletonText, IonItem, IonAlert, IonLabel
+  IonList,
+  IonAvatar,
+  IonSkeletonText,
+  IonItem,
+  IonAlert,
+  IonLabel,
+  IonBadge,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent
 } from '@ionic/angular/standalone';
 import { MovieService } from "../services/movie.service";
 import { MovieResult } from "../services/interfaces";
 import { catchError, finalize } from "rxjs";
 import { DatePipe } from "@angular/common";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -27,7 +36,11 @@ import { DatePipe } from "@angular/common";
     IonItem,
     IonAlert,
     IonLabel,
-    DatePipe
+    DatePipe,
+    RouterLink,
+    IonBadge,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent
   ],
   standalone: true
 })
@@ -63,19 +76,17 @@ export class HomePage {
         catchError(err => {
           this.error = err.error.status_message;
           return [];
-        })
+        }),
       )
       .subscribe({
         next: res => {
           this.movies.push(...res.results);
-
-          if(event) {
-            event.target.disabled = true;
-          }
         }
       })
-
   }
 
-  loadMore(event: InfiniteScrollCustomEvent) {}
+  loadMore(event: InfiniteScrollCustomEvent) {
+    this.currentPage++;
+    this.loadMovies(event);
+  }
 }

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonBackButton,
-  IonButton,
   IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
   IonContent,
   IonHeader, IonIcon, IonItem, IonLabel, IonText,
@@ -27,7 +26,6 @@ import { calendarOutline, cashOutline } from "ionicons/icons";
     IonToolbar,
     CommonModule,
     FormsModule,
-    IonButton,
     IonButtons,
     IonBackButton,
     IonCard,
